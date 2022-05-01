@@ -6,15 +6,15 @@ public class Order {
     private int itemPrice;
     private int discountPrice;
 
-    public Order(Long memberId, String itemName, int itemPrice, int discountPrice){
+    public Order(Long memberId, String itemName, int itemPrice, int discountPrice) {
         this.memberId = memberId;
         this.itemName = itemName;
-        this.itemPrice =itemPrice;
+        this.itemPrice = itemPrice;
         this.discountPrice = discountPrice;
     }
 
     //비즈니스 계산 로직
-    public int calcPrice(){
+    public int calcPrice() {
         return itemPrice - discountPrice;
     }
 
@@ -53,11 +53,11 @@ public class Order {
     @Override
     //출력할 때 보기 쉽게 하기 위해서 생성
     //command+n 누른 뒤, toString 검색
-    public String toString(){
-        return " Order{"+
-                "memberId: "+memberId+System.lineSeparator()+
-                "itemName: "+itemName+'\''+
-                "itemPrice: "+itemPrice+
-                "discountPrice: " + discountPrice+"}";
+    public String toString() {
+        return " Order" +System.lineSeparator()+
+                "{memberId: " + memberId + System.lineSeparator() +
+                "itemName: " + itemName + System.lineSeparator() +
+                "itemPrice: " + itemPrice +System.lineSeparator()+
+                "discountPrice: " + discountPrice + "}";
     }
 }
