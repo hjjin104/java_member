@@ -10,8 +10,8 @@ public class FixDiscountPolicy implements DiscountPolicy{
     public int discount(Member member, int price) {
         //등급이 VIP 여야만 할인된다는 조건
         if(member.getGrade()== Grade.VIP){
-            return price - discountFixAmount;
+            return discountFixAmount;
         }
-        return price;
+        return 0;
     }
 }
