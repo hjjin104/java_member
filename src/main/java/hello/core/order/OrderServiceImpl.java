@@ -9,11 +9,18 @@ import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
     //멤버 리포지토리에서 회원을 찾기 위함
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
     //고정 할인 정책도 필요
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
     //정률 할인 정책
-    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    private DiscountPolicy discountPolicy;
+    //추상(인터페이스)에만 의존할 수 있도록 코드 수정, but 구현체(구현 클래스)가 없기 때문에 NPE(null pointer exception) 발생
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy){
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
