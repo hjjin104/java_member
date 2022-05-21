@@ -19,16 +19,19 @@ public class AppConfig {
     //@Bean : 스프링 컨테이너에 등록하겠다
     @Bean
     public MemberService memberService(){
+        System.out.println("cal AppConfig.memberService");
         return new MemberServiceImpl(new MemoryMemberRepository());
     }
     @Bean
     public OrderService orderService(){
+        System.out.println("cal AppConfig.orderService");
         //구체적인 것을 여기서 선택하도록 함
         //생성자 주입
         return new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
     }
     @Bean
     private MemberRepository memberRepository(){
+        System.out.println("cal AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
     @Bean
