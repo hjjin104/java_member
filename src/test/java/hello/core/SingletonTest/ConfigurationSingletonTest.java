@@ -4,6 +4,7 @@ import hello.core.AppConfig;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.order.OrderService;
+import org.assertj.core.util.VisibleForTesting;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -29,5 +30,18 @@ public class ConfigurationSingletonTest {
         System.out.println("memberService1 = "+ memberService1);
         System.out.println("orderService = "+ orderService);
         System.out.println("memberRepository = "+ memberRepository);
+    }
+
+
+    @Test
+    void configurationDeep(){
+        //이 과정에서 Appconfig도 스프링 빈으로 등록된다
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        //Appconfig 조회
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        //클래스 타입 출력
+        System.out.println("bean = "+bean.getClass());
     }
 }
